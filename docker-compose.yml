@@ -1,4 +1,10 @@
 version: '3.4'
+environment:
+  - TZ="America/New_York"
+  - PGID=1001
+  - PUID=1001
+  - ROOT=/media
+  
 services:
 
   vpn:
