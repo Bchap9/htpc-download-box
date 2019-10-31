@@ -84,8 +84,3 @@ services:
       - /media/config/radarr:/config # config files
       - /media/complete/movies:/movies # movies folder
       - /media/downloads:/downloads # download folder
-TZ="America/New_York"
-PGID=1001
-PUID=1001
-ROOT=/media
-  
