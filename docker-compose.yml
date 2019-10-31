@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     volumes:
       - /dev/net:/dev/net:z # tun device
-      - ${ROOT}/config/vpn:/vpn # OpenVPN configuration
+      - /media/config/vpn:/vpn # OpenVPN configuration
     security_opt:
       - label:disable
     ports:
@@ -21,12 +21,12 @@ services:
     restart: unless-stopped
     network_mode: service:vpn # run on the vpn network
     environment:
-      - PUID=${PUID} # default user id, defined in .env 
-      - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env
+      - PUID=1001 # default user id, defined in .env 
+      - PGID=1001 # default group id, defined in .env
+      - TZ="America/New_York" # timezone, defined in .env
     volumes:
-      - ${ROOT}/downloads:/downloads # downloads folder
-      - ${ROOT}/config/deluge:/config # config files
+      - /media/downloads:/downloads # downloads folder
+      - /media/config/deluge:/config # config files
 
   jackett:
     container_name: jackett
@@ -34,13 +34,13 @@ services:
     restart: unless-stopped
     network_mode: host
     environment:
-      - PUID=${PUID} # default user id, defined in .env
-      - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env
+      - PUID=1001 # default user id, defined in .env
+      - PGID=1001 # default group id, defined in .env
+      - TZ="America/New_York" # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}/downloads/torrent-blackhole:/downloads # place where to put .torrent files for manual download
-      - ${ROOT}/config/jackett:/config # config files
+      - /media/downloads/torrent-blackhole:/downloads # place where to put .torrent files for manual download
+      - /media/config/jackett:/config # config files
 
   nzbget:
     container_name: nzbget
@@ -48,12 +48,12 @@ services:
     restart: unless-stopped
     network_mode: host
     environment:
-      - PUID=${PUID} # default user id, defined in .env
-      - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env
+      - PUID=1001 # default user id, defined in .env
+      - PGID=1001 # default group id, defined in .env
+      - TZ="America/New_York" # timezone, defined in .env
     volumes:
-      - ${ROOT}/downloads:/downloads # download folder
-      - ${ROOT}/config/nzbget:/config # config files
+      - /media/downloads:/downloads # download folder
+      - /media/config/nzbget:/config # config files
 
   sonarr:
     container_name: sonarr
@@ -61,14 +61,14 @@ services:
     restart: unless-stopped
     network_mode: host
     environment:
-      - PUID=${PUID} # default user id, defined in .env
-      - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env
+      - PUID=1001 # default user id, defined in .env
+      - PGID=1001 # default group id, defined in .env
+      - TZ="America/New_York" # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}/config/sonarr:/config # config files
-      - ${ROOT}/complete/tv:/tv # tv shows folder
-      - ${ROOT}/downloads:/downloads # download folder
+      - /media/config/sonarr:/config # config files
+      - /media/complete/tv:/tv # tv shows folder
+      - /media/downloads:/downloads # download folder
 
   radarr:
     container_name: radarr
@@ -76,14 +76,14 @@ services:
     restart: unless-stopped
     network_mode: host
     environment:
-      - PUID=${PUID} # default user id, defined in .env
-      - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env
+      - PUID=1001 # default user id, defined in .env
+      - PGID=1001 # default group id, defined in .env
+      - TZ="America/New_York" # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}/config/radarr:/config # config files
-      - ${ROOT}/complete/movies:/movies # movies folder
-      - ${ROOT}/downloads:/downloads # download folder
+      - /media/config/radarr:/config # config files
+      - /media/complete/movies:/movies # movies folder
+      - /media/downloads:/downloads # download folder
 TZ="America/New_York"
 PGID=1001
 PUID=1001
